@@ -1,4 +1,25 @@
-shamir 秘密共享图片，由于模值是256，非素数，因此如果x的值太大，容易出现模逆为0的情况; 签名时只对像素数据进行签名，否则受元数据以及其它的影响
+- Image-Sharing-Based-on-Shamir-Threshold(Shamir's secret sharing for images involves working with a modulus of 256, which is not a prime number. Therefore, if the value of 'x' is too large, it can lead to situations where the modular inverse is 0. When performing image signing, only the pixel data is signed to avoid the influence of metadata and other factors.)
+- sharing small images
+  - Shamir.image_in(image_path, save_dir, shuffle=False)
+    - image_path is defined as 'src' in my documentation
+    - save_dir is where shared images locates
+    - shuffle is a flag whether to disrupt the input of the absicssa
+  - Shamir.image_out(save_dir, save_path)
+    - save_dir is the same as function image_in
+- sharing large images
+  - Shamir.large_image_in(image_path, save_dir, patch_save_dir)
+    - save_dir is like function image_in. But it stores patches of sub secret images too
+    - patch_save_dir is where the patches of input image stores
+  - Shamir.large_image_out(save_dir, save_path, patches_buffer=None)
+    - save_dir is like function image_out. Input at least the same number of images as the threshold.
+- image signature verification (Based on RSA's SHA256 Signature Verification Algorithm)
+  - Shamir.signature_in_image(image_path)
+    - the output image will be saved in 
+  - Shamir.image_verify(output_path, image_path)
+ 
+
+- 中文介绍
+- shamir 秘密共享图片，由于模值是256，非素数，因此如果x的值太大，容易出现模逆为0的情况; 签名时只对像素数据进行签名，否则受元数据以及其它的影响
 - 小图片共享：
   - Shamir.image_in(image_path, save_dir, shuffle=False)将根据image_path生成子秘密图像，保存在save_dir中，若shuffle为False，则默认x的取值是有序整数序列1，2，3，……
   - save_dir中子秘密图像保存格式：
