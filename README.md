@@ -14,8 +14,10 @@
     - save_dir is like function image_out. Input at least the same number of images as the threshold.
 - image signature verification (Based on RSA's SHA256 Signature Verification Algorithm)
   - Shamir.signature_in_image(image_path)
-    - the output image will be saved in 
+    - the output image will be saved in "signature_out_dir" in my documentation.
   - Shamir.image_verify(output_path, image_path)
+    - the output_path is the url of image with signature data embedded.
+    - the image_path is the image to verify.
  
 
 - 中文介绍
