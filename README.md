@@ -1,0 +1,38 @@
+shamir 秘密共享图片，由于模值是256，非素数，因此如果x的值太大，容易出现模逆为0的情况; 签名时只对像素数据进行签名，否则受元数据以及其它的影响
+- 小图片共享：
+  - Shamir.image_in(image_path, save_dir, shuffle=False)将根据image_path生成子秘密图像，保存在save_dir中，若shuffle为False，则默认x的取值是有序整数序列1，2，3，……
+  - save_dir中子秘密图像保存格式：
+    - save_dir
+      - picture_name
+        - common(不携带原始图像签名数据)
+        - signature(带有原始图像签名数据)
+  - Shamir.image_out(save_dir, save_path)
+    - save_dir是子秘密图像的保存位置，save_path是输出路径(png格式)
+    - save_dir使用signature_images
+- 大图片共享：
+  - Shamir.large_image_in(image_path, save_dir, patch_save_dir)
+    - image_path 原图片路径
+    - save_dir 子秘密patch的缓存路径
+      - index of patch
+        - common
+        - signature
+    - patch_save_dir 原图像的patch缓存路径
+    - 为保证与恢复相同，子秘密图像默认输出目录为 dir = out_images
+      - picture name
+        - signature 携带原始图像签名的子秘密图像
+        - common 大图像中默认不保存不携带签名的数据
+  - Shamir.large_image_out(save_dir, save_path, patches_buffer=None) 恢复图像并验证签名
+    - save_dir是指子秘密图像所在的目录
+      - picture name
+        - signature
+          - pictures
+      - save_path 输出图像位置(png格式)
+      - patches_buffer 恢复过程中子秘密patch的缓存路径 默认为patches_out
+        - picture name
+          - patch index
+            - signature pictures
+- 图像签名验证(基于RSA的SHA256签名验证算法)
+  - Shamir.signature_in_image(image_path)
+    - 输出目录为signature_images
+  - Shamir.image_verify(output_path, image_path)
+    - 提取output_path图像中的签名数据与image_path进行验证
