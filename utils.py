@@ -257,8 +257,9 @@ def extract_images_from_patches_buffer(patch_dir):
 
 
 if __name__ == '__main__':
-    src = './resources/miku.png'
-    out_src = './back/miku.png'
+    # just to test something
+    src = './resources/... .png'
+    out_src = './back/... .png'
     image_src = Image.open(src)
     image_out_src = Image.open(out_src)
     image_array_1 = np.array(image_src)
