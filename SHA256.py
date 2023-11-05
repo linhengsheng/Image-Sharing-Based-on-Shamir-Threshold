@@ -35,7 +35,7 @@ def embed_signature_in_image(image_path, signature, output_path):
         output_file.write(image_data)
     with open(output_path, 'ab') as output_file:
         output_file.write(combined_data)
-    print(f'signature is embed in image, the image_out is save in {output_path}')
+    print(f'signature is embeded in image, the image_out is save in {output_path}')
 
 
 # 从图像中提取签名
