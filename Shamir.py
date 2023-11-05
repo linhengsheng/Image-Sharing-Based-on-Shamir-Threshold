@@ -79,7 +79,7 @@ class Shamir:
         print(f"max:{max_value.item()}")
         self.secrets_tensor_to_images(secrets_tensor, save_dir, signature)
 
-    # 输出图像要使用png无损压缩存储，否则会出现原图不匹配的错误
+    # 输出图像要使用png无损压缩存储，否则可能会出现原图不匹配的错误
     def image_out(self, save_dir, save_path):
         secrets_tensor, signature_path = self.images_to_secrets_tensor(save_dir)
         image_tensor = self.recover(secrets_tensor)
@@ -118,25 +118,6 @@ class Shamir:
     def images_to_secrets_tensor(self, save_dir):
         all_contents = os.listdir(save_dir)
         image_list = [os.path.join(save_dir, item).replace('\\', '/') for item in all_contents if os.path.isfile(os.path.join(save_dir, item).replace('\\', '/'))]
-        # print(image_list)
-        # secrets_arrays = []
-        # ret_path = None
-        # for path in image_list:
-        #     ret_path = os.path.join(save_dir, path).replace('\\', '/')
-        #     image = Image.open(os.path.join(save_dir, path).replace('\\', '/'))
-        #     image_array = np.array(image)
-        #     self.shape = image_array.shape
-        #     image_array = image_array.flatten()
-        #     match = re.search(r'\d+', path)
-        #     if match:
-        #         index = match.group()
-        #         index_array = np.full(self.shape, int(index))
-        #         index_array = index_array.flatten()
-        #     else:
-        #         return
-        #     secrets_array = np.stack((index_array, image_array))
-        #     secrets_array = np.transpose(secrets_array, axes=[1, 0])
-        #     secrets_arrays.append(secrets_array)
         # secrets_arrays = np.stack(secrets_arrays)
         secrets_arrays, ret_path = self.get_secrets_array_from_image_list(image_list)
         secrets_arrays = np.transpose(secrets_arrays, axes=[1, 0, 2])
@@ -290,7 +271,7 @@ share_num = 6
 threshold_num = 2
 shamir = Shamir(share_num, threshold_num)
 # 源路径
-src = './resources/miku.png'
+src = './resources/....png'
 signature_dir = out_dir + '/' + src.split("/")[-1].split(".")[0] + '/signature'
 out_src = f'./back/{src.split("/")[-1].split(".")[0]}.png'
 
