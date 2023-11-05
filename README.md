@@ -1,3 +1,5 @@
+- My English is not good. First time to use github, thanks.
+- My email: linhengsheng@outlook.com
 - Image-Sharing-Based-on-Shamir-Threshold(Shamir's secret sharing for images involves working with a modulus of 256, which is not a prime number. Therefore, if the value of 'x' is too large, it can lead to situations where the modular inverse is 0. When performing image signing, only the pixel data is signed to avoid the influence of metadata and other factors.)
 - sharing small images
   - Shamir.image_in(image_path, save_dir, shuffle=False)
