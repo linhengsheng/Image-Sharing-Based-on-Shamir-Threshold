@@ -5,7 +5,7 @@
   - Shamir.image_in(image_path, save_dir, shuffle=False)
     - image_path is defined as 'src' in my documentation
     - save_dir is where shared images locates
-    - shuffle is a flag whether to disrupt the input of the absicssa
+    - shuffle is a flag whether to disrupt the input of the abscissas
   - Shamir.image_out(save_dir, save_path)
     - save_dir is the same as function image_in
 - sharing large images
