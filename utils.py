@@ -95,6 +95,7 @@ def recovery(s, t, p):
                 sigma *= (s[j][0])
                 dem *= (s[j][0] - s[i][0])
         # 保证sigma为0到255的正整数且是模值运算
+        dem %= p     # 此处模p可以让s[i][1]*sigma % dem是整数的概率更大，防止出现模不可逆的情况
         if s[i][1]*sigma % dem == 0:
             sigma = s[i][1] * sigma / dem
         else:
